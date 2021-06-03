@@ -1,0 +1,144 @@
+<html>
+<head>
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<title>Tesseract.js OCR demo</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="style/ocr.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://kit.fontawesome.com/4414288e8e.js"></script>
+<script src='js/tesseract.min.js'></script>
+</head>
+<body>
+
+		<h1 class="header-1" >
+		OPTICAL CHARACETER RECOGNITION
+		</h1>
+
+		<div class="container mt-3">
+			
+			<div class="row">
+				<div class="col-12 col-md-5 containers">
+					<div class="wrapper">
+						<div class="image"></div>
+							<div class="content">
+								<div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+								<div class="text">No File Chosen Yet</i></div>
+							</div>
+							<div class="file-name">File Name Here</div>
+						</div>
+						<input type="file" id="default-btn" hidden >
+						<button  id="custom-btn" class="upl-btn">Choose a file</button>
+					</div>
+
+					<div class="col-12 col-md-4 mt-3 mt-md-0" style="position: relative;left: 314px;" >
+							<label id="lang" class="lang-viewer">Select the languages</label>
+							<div class="langselect" >
+								<select id="langsel" class="lang-name" multiple size="10">
+									<option value='afr'     > Afrikaans             </option>
+									<option value='ara'     > Arabic                </option>
+									<option value='aze'     > Azerbaijani           </option>
+									<option value='bel'     > Belarusian            </option>
+									<option value='ben'     > Bengali               </option>
+									<option value='bul'     > Bulgarian             </option>
+									<option value='cat'     > Catalan               </option>
+									<option value='ces'     > Czech                 </option>
+									<option value='chi_sim' > Chinese               </option>
+									<option value='chi_tra' > Traditional Chinese   </option>
+									<option value='chr'     > Cherokee              </option>
+									<option value='dan'     > Danish                </option>
+									<option value='deu'     > German                </option>
+									<option value='ell'     > Greek                 </option>
+									<option value='eng'     selected> English       </option>
+									<option value='enm'     > English (Old)         </option>
+									<option value='meme'    > Internet Meme         </option>
+									<option value='epo'     > Esperanto             </option>
+									<option value='epo_alt' > Esperanto alternative </option>
+									<option value='equ'     > Math                  </option>
+									<option value='est'     > Estonian              </option>
+									<option value='eus'     > Basque                </option>
+									<option value='fin'     > Finnish               </option>
+									<option value='fra'     > French                </option>
+									<option value='frk'     > Frankish              </option>
+									<option value='frm'     > French (Old)          </option>
+									<option value='glg'     > Galician              </option>
+									<option value='grc'     > Ancient Greek         </option>
+									<option value='heb'     > Hebrew                </option>
+									<option value='hin'     > Hindi                 </option>
+									<option value='hrv'     > Croatian              </option>
+									<option value='hun'     > Hungarian             </option>
+									<option value='ind'     > Indonesian            </option>
+									<option value='isl'     > Icelandic             </option>
+									<option value='ita'     > Italian               </option>
+									<option value='ita_old' > Italian (Old)         </option>
+									<option value='jpn'     > Japanese              </option>
+									<option value='kan'     > Kannada               </option>
+									<option value='kor'     > Korean                </option>
+									<option value='lav'     > Latvian               </option>
+									<option value='lit'     > Lithuanian            </option>
+									<option value='mal'     > Malayalam             </option>
+									<option value='mkd'     > Macedonian            </option>
+									<option value='mlt'     > Maltese               </option>
+									<option value='msa'     > Malay                 </option>
+									<option value='nld'     > Dutch                 </option>
+									<option value='nor'     > Norwegian             </option>
+									<option value='pol'     > Polish                </option>
+									<option value='por'     > Portuguese            </option>
+									<option value='ron'     > Romanian              </option>
+									<option value='rus'     > Russian               </option>
+									<option value='slk'     > Slovakian             </option>
+									<option value='slv'     > Slovenian             </option>
+									<option value='spa'     > Spanish               </option>
+									<option value='spa_old' > Old Spanish           </option>
+									<option value='sqi'     > Albanian              </option>
+									<option value='srp'     > Serbian (Latin)       </option>
+									<option value='swa'     > Swahili               </option>
+									<option value='swe'     > Swedish               </option>
+									<option value='tam'     > Tamil                 </option>
+									<option value='tel'     > Telugu                </option>
+									<option value='tgl'     > Tagalog               </option>
+									<option value='tha'     > Thai                  </option>
+									<option value='tur'     > Turkish               </option>
+									<option value='ukr'     > Ukrainian             </option>
+									<option value='vie'     > Vietnamese            </option>
+								</select>
+							</div>
+						
+					</div>
+					
+				<div class="col-12 col-md-1 loading">
+					<i id="arrow-right" class="fas fa-arrow-right d-none d-md-block"></i>
+					<i id="arrow-down" class="fas fa-arrow-down d-block d-md-none"></i>
+				</div>		
+			</div>
+
+			<div class="row">
+				
+				<div class="col-12 col-md-5 mb-4">
+					<div id="log" class="text-result overflow-auto">
+						<div >
+							<label for="" class="log-header">Scanned Result</label>
+						</div>
+						</div>
+						<div class="download">
+							<button class="download-btn">Download</button>
+
+						</div>
+
+						<div class="copy">
+							<button class="copy-btn">Copy</button>
+						</div>
+
+						<div class="search">
+							<button class="search-btn">Search</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	<script src="js/tesseract-ocr.js"></script>
+</body>
+
+</html>
+					

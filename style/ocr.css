@@ -1,0 +1,398 @@
+:root{
+--primary: #5eaaa8;
+--secondary: #a3d2ca;
+}
+body{
+width: 100%;
+height: 100vh;
+background-image: linear-gradient(
+to right bottom,
+var(--primary),
+var(--secondary)
+);
+}
+#log > div {
+color: #313131;
+border-top: 1px solid #dadada;
+padding: 9px;
+display: flex;
+}
+#log > div:first-child {
+border: 0;
+}
+.status {
+min-width: 250px;
+}
+#log {
+border: 1px solid #dadada;
+padding: 10px;
+min-height: 200px;
+}
+.image-container img{
+border: 1px solid #dadada;
+}
+progress {
+display: block;
+width: 100%;
+transition: opacity 0.5s linear;
+}
+progress[value="1"] {
+opacity: 0.5;
+}
+select {
+padding: 12px 5px;
+width: 209px;
+}
+
+.inputfile {
+width: 0.1px;
+height: 0.1px;
+opacity: 0;
+overflow: hidden;
+position: absolute;
+z-index: -1;
+}
+
+.inputfile + label {
+max-width: 80%;
+font-size: 1.25rem;
+/* 20px */
+font-weight: 700;
+text-overflow: ellipsis;
+white-space: nowrap;
+cursor: pointer;
+display: inline-block;
+overflow: hidden;
+padding: 0.625rem 1.25rem;
+/* 10px 20px */
+}
+
+.no-js .inputfile + label {
+display: none;
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+outline: 1px dotted #000;
+outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label * {
+/* pointer-events: none; */
+/* in case of FastClick lib use */
+}
+
+.inputfile + label svg {
+width: 1em;
+height: 1em;
+vertical-align: middle;
+fill: currentColor;
+margin-top: -0.25em;
+/* 4px */
+margin-right: 0.25em;
+/* 4px */
+}
+
+
+/* style 1 */
+
+.inputfile-1 + label {
+color: #f1e5e6;
+background-color: #d3394c;
+}
+
+.inputfile-1:focus + label,
+.inputfile-1.has-focus + label,
+.inputfile-1 + label:hover {
+background-color: #722040;
+}
+
+#arrow-right ,
+#arrow-down {
+font-size: 3em;
+}
+
+#arrow-right {
+position: absolute;
+top: 60px;
+}
+#arrow-down{
+width: 50px;
+margin: 10px auto;
+}
+
+#arrow-right.fa-arrow-right ,
+#arrow-right.fa-spin ,
+#arrow-down.fa-arrow-down ,
+#arrow-down.fa-spin  {
+color: #d3394c;
+}
+
+.fa-check{
+color:green;
+}
+
+#log pre {
+white-space: pre-wrap;       /* css-3 */
+white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+white-space: -pre-wrap;      /* Opera 4-6 */
+white-space: -o-pre-wrap;    /* Opera 7 */
+word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+#startLink{
+text-decoration: underline;
+margin-top: 100px;
+}
+
+@media screen and (min-width: 992px) {
+#startPre{
+position: absolute;
+top: 50px;
+padding: 20px;
+}
+}
+/*the container must be positioned relative:*/
+.custom-select {
+position: relative;
+font-family: Arial;
+}
+
+.custom-select select {
+display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+background-color: DodgerBlue;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+position: absolute;
+content: "";
+top: 14px;
+right: 10px;
+width: 0;
+height: 0;
+border: 6px solid transparent;
+border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+border-color: transparent transparent #fff transparent;
+top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+color: #ffffff;
+padding: 8px 16px;
+border: 1px solid transparent;
+border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+cursor: pointer;
+user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+position: absolute;
+background-color: DodgerBlue;
+top: 100%;
+left: 0;
+right: 0;
+z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+background-color: rgba(0, 0, 0, 0.1);
+}
+
+.containers{
+height: 350px;
+}
+.containers .wrapper{
+position: relative;
+height: 300px; 
+border-radius: 10px;
+background: #fff;
+border: 2px dashed #c2cdda;
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+}
+.wrapper .active{
+border: none;
+}
+.wrapper .image{
+position: absolute;
+height: 100%;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.wrapper .image img{
+height: 100%;
+width: 100%;
+object-fit:contain;
+}
+.wrapper .icon{
+font-size: 100px;
+color: #9658fe;
+}
+.wrapper .text{
+font-size: 20px;
+font-weight: 500;
+color: #5b5b7b;
+}
+.wrapper .file-name{
+position: absolute;
+bottom: 0px;
+width: 100%;
+text-align: center;
+color: #fff;
+padding: 8px 0px;
+font-size: 18px;
+background:linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
+display: none;
+}
+.containers #custom-btn{
+margin-top: 30px;
+width: 100%;
+height: 50px;
+display: block;
+border:none;
+border-radius: 25px;
+color:#fff;
+font-size: 18px;
+letter-spacing: 1px;
+text-transform: uppercase;
+cursor: pointer;
+background:linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
+}
+
+.header-1{
+  text-align: center; 
+  font-size:x-large; 
+  background-color: #a6f0c6;
+  color: #0f1123;
+  padding: 29px;
+  margin-bottom: 68px;
+}
+.text{
+background-color: white;
+}
+.langselect{
+position: absolute;
+top: 162px;
+left: -63px;
+text-align: center;
+display: flex;
+}
+
+.text-result{
+background-color: white;
+border-radius: 10px;
+height: 300px;
+/* position: relative;
+top: 68px; */
+margin: auto;
+}
+
+.upl-btn{
+position: absolute;
+top: 0.563rem;
+left: 37.5rem;
+
+}
+.loading{
+position: absolute;
+top: 205px;
+left: 769px;
+}
+
+.download{
+position: relative;
+top: 31px;
+display: block;
+border: none;
+border-radius: 10px;
+}
+.copy{
+position: relative;
+left: 180px;
+}
+.search{
+position: relative;
+left: 332px;
+bottom: 30px;
+}
+.download-btn{
+display: block;
+border:none;
+border-radius: 25px;
+color:#fff;
+font-size: 18px;
+letter-spacing: 1px;
+text-transform: uppercase;
+cursor: pointer;
+background:linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
+}
+.copy-btn{
+display: block;
+border:none;
+border-radius: 25px;
+color:#fff;
+font-size: 18px;
+letter-spacing: 1px;
+text-transform: uppercase;
+cursor: pointer;
+background:linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
+}
+.search-btn{
+display: block;
+border:none;
+border-radius: 25px;
+color:#fff;
+font-size: 18px;
+letter-spacing: 1px;
+text-transform: uppercase;
+cursor: pointer;
+background:linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
+}
+
+.lang-viewer{
+  position: absolute;
+  top: 120px;
+  right: 194px;
+  width: 77%;
+  text-align: center;
+  height: 30px;
+  display: block;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
+}
+
+.log-header{
+  font-weight: bold;
+}
+.lang-name{
+font-family: cursive;
+  font-size: 16px;
+  border: none;
+  color: coral;
+  border-radius: 16px;
+}
