@@ -1,39 +1,39 @@
 $( document ).ready(function() {
 
 const defaultBtn=  document.getElementById("default-btn");
-		const customBtn=  document.getElementById("custom-btn");
-		customBtn.addEventListener("click",()=>{
-			defaultBtn.click();
-		})
+	const customBtn=  document.getElementById("custom-btn");
+	customBtn.addEventListener("click",()=>{
+		defaultBtn.click();
+	})
 
 defaultBtn.addEventListener("change",function(e){
 
-	const image_div=document.querySelector(".image");
-	if(image_div.childNodes.length>0){
-		console.log(image_div.childNodes);
-		image_div.removeChild(image_div.childNodes[0]);
-		
-	}
-	// document.querySelector(".content").removeClass(".icon");
-	// document.querySelector(".content").removeClass(".text");
-	const file =e.target.files[0];
-	if(file){
-	let reader = new FileReader();
-	reader.onload= function(){
-		const result = reader.result;
-		var image = new Image();
-		image.src = result;
-		image_div.appendChild(image);
-		document.querySelector(".wrapper").style.border="none";
-	}
-	reader.readAsDataURL(file);
-	startRecognize(file);
+const image_div=document.querySelector(".image");
+if(image_div.childNodes.length>0){
+	console.log(image_div.childNodes);
+	image_div.removeChild(image_div.childNodes[0]);
+	
+}
+// document.querySelector(".content").removeClass(".icon");
+// document.querySelector(".content").removeClass(".text");
+const file =e.target.files[0];
+if(file){
+let reader = new FileReader();
+reader.onload= function(){
+	const result = reader.result;
+	var image = new Image();
+	image.src = result;
+	image_div.appendChild(image);
+	document.querySelector(".wrapper").style.border="none";
+}
+reader.readAsDataURL(file);
+startRecognize(file);
 }
 if(this.value){
-	let valueStore = this.value;
-	document.querySelector(".file-name").innerHTML = e.target.value.split( '\\' ).pop();;
+let valueStore = this.value;
+document.querySelector(".file-name").innerHTML = e.target.value.split( '\\' ).pop();;
 }
-	
+
 })
 // var inputs = document.querySelectorAll( '.inputfile' );
 // Array.prototype.forEach.call( inputs, function( input )
@@ -74,8 +74,8 @@ if(this.value){
 // 			$("#log").empty();
 // 		}
 // 	});
-	
-	// Firefox bug fix
+
+// Firefox bug fix
 // 	input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
 // 	input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
 // });
@@ -93,86 +93,93 @@ function progressUpdate(packet){
 var log = document.getElementById('log');
 
 if(log.firstChild && log.firstChild.status === packet.status){
-	if('progress' in packet){
-		var progress = log.firstChild.querySelector('progress')
-		progress.value = packet.progress
-	}
+if('progress' in packet){
+	var progress = log.firstChild.querySelector('progress')
+	progress.value = packet.progress
+}
 }else{
-	var line = document.createElement('div');
-	line.status = packet.status;
-	var status = document.createElement('div')
-	status.className = 'status'
-	status.appendChild(document.createTextNode(packet.status))
-	line.appendChild(status)
+var line = document.createElement('div');
+line.status = packet.status;
+var status = document.createElement('div')
+status.className = 'status'
+status.appendChild(document.createTextNode(packet.status))
+line.appendChild(status)
 
-	if('progress' in packet){
-		var progress = document.createElement('progress')
-		progress.value = packet.progress
-		progress.max = 1
-		line.appendChild(progress)
-	}
+if('progress' in packet){
+	var progress = document.createElement('progress')
+	progress.value = packet.progress
+	progress.max = 1
+	line.appendChild(progress)
+}
 
 
-	if(packet.status == 'done'){
-		log.innerHTML = ''
-		var pre = document.createElement('pre')
-		pre.setAttribute('id','text-area');
-		pre.style.fontFamily="auto";
-		pre.style.fontWeight="bold";
-		pre.appendChild(document.createTextNode(packet.data.text.replace(/\n\s*\n/g, '\n')))
-		line.innerHTML = ''
-		line.appendChild(pre)
-		$(".fas").removeClass('fa-spinner fa-spin')
-		$(".fas").addClass('fa-check')
-		var download = document.querySelector(".download-btn");
-		
-		download.addEventListener("click", function(){
-			var textArea = document.getElementById("text-area").innerHTML;
-			var fileName = "output.txt";
-			download(fileName, textArea);
+if(packet.status == 'done'){
+	log.innerHTML = ''
+	var pre = document.createElement('pre')
+	pre.setAttribute('id','text-area');
+	pre.setAttribute('class','text-content')
+	pre.style.fontFamily="auto";
+	pre.style.fontWeight="bold";
+	pre.appendChild(document.createTextNode(packet.data.text.replace(/\n\s*\n/g, '\n')))
+	line.innerHTML = ''
+	line.appendChild(pre)
+	$(".fas").removeClass('fa-spinner fa-spin')
+	$(".fas").addClass('fa-check')
+	const download = document.querySelector(".download-btn");
+	const copy  = document.querySelector(".copy-btn");
+	download.addEventListener("click", function(){
+		var textArea = document.getElementById("text-area").innerHTML;
+		var fileName = "output.txt";
+		download(fileName, textArea);
 
-			function download(filename, text) {
-				var element = document.createElement('a');
-				element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-				element.setAttribute('download', filename);
-			  
-				element.style.display = 'none';
-				document.body.appendChild(element);
-			  
-				element.click();
-			  
-				document.body.removeChild(element);
-			  }
+		function download(filename, text) {
+			var element = document.createElement('a');
+			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+			element.setAttribute('download', filename);
 			
-		})
-	}
+			element.style.display = 'none';
+			document.body.appendChild(element);
+			
+			element.click();
+			
+			document.body.removeChild(element);
+			}
+		
+	})
+copy.addEventListener("click",function(){
+var copy_text = document.getElementsByTagName("pre")[0];
+var range = document.createRange();
+range.selectNode(copy_text);
+window.getSelection().addRange(range);
 
-	log.insertBefore(line, log.firstChild)
+try {
+var successful = document.execCommand('copy');
+var msg = successful ? 'successful' : 'unsuccessful';
+console.log('Copying text command was ' + msg);
+} catch (err) {
+console.log('Oops, unable to copy');
+}
+	})
+}
+log.insertBefore(line, log.firstChild)
 }
 }
 
 function recognizeFile(file){
 $("#log").empty();
-const corePath = window.navigator.userAgent.indexOf("Edge") > -1
-? 'js/tesseract-core.asm.js'
-: 'js/tesseract-core.wasm.js';
+const corePath = window.navigator.userAgent.indexOf("Edge") > -1? 'js/tesseract-core.asm.js': 'js/tesseract-core.wasm.js';
 
+const worker = new Tesseract.TesseractWorker({corePath});
 
-const worker = new Tesseract.TesseractWorker({
-	corePath,
-});
+worker.recognize(file,$("#langsel").val())
+.progress(function(packet){
+	console.info(packet)
+	progressUpdate(packet)
 
-worker.recognize(file,
-	$("#langsel").val()
-)
-	.progress(function(packet){
-		console.info(packet)
-		progressUpdate(packet)
-
-	})
-	.then(function(data){
-		console.log(data)
-		progressUpdate({ status: 'done', data: data })
-	})
+})
+.then(function(data){
+	console.log(data)
+	progressUpdate({ status: 'done', data: data })
+})
 }
 

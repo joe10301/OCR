@@ -321,13 +321,14 @@ left: 769px;
 .download{
 position: relative;
 top: 31px;
+left: 55px;
 display: block;
 border: none;
 border-radius: 10px;
 }
 .copy{
 position: relative;
-left: 180px;
+left: 247px;
 }
 .search{
 position: relative;
@@ -382,7 +383,6 @@ background:linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
   font-size: 18px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  cursor: pointer;
   background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
 }
 
